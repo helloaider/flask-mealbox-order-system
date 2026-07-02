@@ -1,6 +1,23 @@
 ﻿# 每日盒饭 · 在线套餐点餐配送
 
+![Python](https://img.shields.io/badge/Python-3.10+-blue)
+![Flask](https://img.shields.io/badge/Flask-3.0-green)
+![SQLite](https://img.shields.io/badge/Database-SQLite-lightgrey)
+![License](https://img.shields.io/badge/License-MIT-yellow)
+![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20macOS-informational)
+
 基于 Flask + SQLite 的轻量级在线套餐点餐配送系统，支持用户点餐和管理员后台，提供套餐随机搭配与自由点菜两种下单方式。开箱即用，无需额外数据库服务，手机电脑均可访问。
+
+---
+
+## 界面截图
+
+| | |
+|:---:|:---:|
+| ![截图1](images/1.jpg) | ![截图2](images/2.jpg) |
+| ![截图3](images/3.png) | ![截图4](images/4.jpg) |
+| ![截图5](images/5.jpg) | ![截图6](images/6.png) |
+| ![截图7](images/7.jpg) | ![截图8](images/8.png) |
 
 ---
 
