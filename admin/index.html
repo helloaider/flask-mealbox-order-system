@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -515,6 +515,7 @@ select { width:100%; padding:11px 14px; border:1.5px solid #e0e0e0; border-radiu
   .chart-wrap { height:auto !important; min-height:180px; }
   #panel-statistics > div[style*="grid-template-columns:3fr"] { grid-template-columns:1fr !important; }
   #panel-statistics > div[style*="grid-template-columns:1fr 1fr"] { grid-template-columns:1fr !important; }
+  #stats-row4 { grid-template-columns:1fr !important; }
   #session-summary-wrap { margin-top:0; }
 }
 
@@ -2610,7 +2611,7 @@ function renderStatsCharts(data) {
   const row4 = document.getElementById('stats-row4');
   if (sessionSummary && sessionSummary.length && !statsSessionId) {
     summaryCard.style.display = 'block';
-    if (row4) row4.style.gridTemplateColumns = '1fr 2fr';
+    if (row4) row4.style.gridTemplateColumns = window.innerWidth <= 768 ? '1fr' : '1fr 2fr';
     let html = '<div style="max-height:200px;overflow-y:auto;font-size:12px;margin-top:10px;">';
     html += '<table style="width:100%;border-collapse:collapse;">';
     html += '<thead><tr style="background:#f8f8f8;"><th style="padding:8px 12px;text-align:left;border-bottom:1px solid #e0e0e0;white-space:nowrap;font-size:13px;">餐次</th><th style="padding:8px 12px;text-align:center;border-bottom:1px solid #e0e0e0;white-space:nowrap;font-size:13px;">订单数</th><th style="padding:8px 12px;text-align:right;border-bottom:1px solid #e0e0e0;white-space:nowrap;font-size:13px;">收入</th></tr></thead><tbody>';
