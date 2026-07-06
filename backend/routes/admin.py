@@ -23,7 +23,7 @@ def admin_login():
     payload = {
         'user_id': admin.id,
         'role': 'admin',
-        'exp': datetime.datetime.utcnow() + datetime.timedelta(days=7),
+        'exp': datetime.datetime.now() + datetime.timedelta(days=7),
     }
     token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
     return jsonify({'token': token, 'username': admin.username}), 200
@@ -80,7 +80,7 @@ def update_order_status(order_id):
     if new_status not in valid:
         return jsonify({'error': '无效状态'}), 400
 
-    # 状态机：只允许向前流转，管理员可回退到 pending（退回制作）但不能回到 unpaid
+    # 状态机：只允许向前流转，不允许回退
     FLOW = {
         'unpaid':     ['pending'],
         'pending':    ['preparing', 'delivering', 'delivered'],
@@ -281,7 +281,7 @@ def update_pickup(pid):
     if 'open_time' in data: p.open_time = data['open_time'].strip()
     if 'note' in data:      p.note = data['note'].strip()
     if 'is_active' in data: p.is_active = bool(data['is_active'])
-    p.updated_at = datetime.datetime.utcnow()
+    p.updated_at = datetime.datetime.now()
     db.session.commit()
     return jsonify(p.to_dict())
 

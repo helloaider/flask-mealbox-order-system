@@ -11,7 +11,7 @@ class User(db.Model):
     phone         = db.Column(db.String(20),  unique=True, nullable=False)
     password_hash = db.Column(db.String(256), nullable=False)
     class_name    = db.Column(db.String(50),  default='')   # 备注
-    created_at    = db.Column(db.DateTime, default=datetime.utcnow)
+    created_at    = db.Column(db.DateTime, default=datetime.now)
     orders        = db.relationship('Order', backref='user', lazy=True)
 
     def to_dict(self):
@@ -68,7 +68,7 @@ class PickupPoint(db.Model):
     open_time  = db.Column(db.String(100), default='')
     note       = db.Column(db.String(200), default='')
     is_active  = db.Column(db.Boolean,     default=True)
-    updated_at = db.Column(db.DateTime,    default=datetime.utcnow, onupdate=datetime.utcnow)
+    updated_at = db.Column(db.DateTime,    default=datetime.now, onupdate=datetime.now)
 
     def to_dict(self):
         return {
@@ -89,7 +89,7 @@ class OrderSession(db.Model):
     deliver_time = db.Column(db.String(50),  default='')           # 预计送餐时间描述
     note         = db.Column(db.String(200), default='')
     is_active    = db.Column(db.Boolean,     default=True)
-    created_at   = db.Column(db.DateTime,    default=datetime.utcnow)
+    created_at   = db.Column(db.DateTime,    default=datetime.now)
 
     def get_status(self):
         now = datetime.now()  # 使用本地时间，与存入的时间保持一致
@@ -138,7 +138,7 @@ class Order(db.Model):
     payment_channel  = db.Column(db.String(20),  default='wechat') # 支付渠道：wechat / alipay
     note             = db.Column(db.String(200), default='')
     address          = db.Column(db.String(100), default='')
-    created_at       = db.Column(db.DateTime, default=datetime.utcnow)
+    created_at       = db.Column(db.DateTime, default=datetime.now)
     # joinedload：一次 JOIN 查出关联数据，避免 N+1
     items        = db.relationship('OrderItem',    backref='order',  lazy='joined')
     session      = db.relationship('OrderSession', backref='orders', lazy='joined',
@@ -207,7 +207,7 @@ class SystemConfig(db.Model):
     id         = db.Column(db.Integer,    primary_key=True)
     key        = db.Column(db.String(50), unique=True, nullable=False)
     value      = db.Column(db.Text,       nullable=False, default='')
-    updated_at = db.Column(db.DateTime,   default=datetime.utcnow, onupdate=datetime.utcnow)
+    updated_at = db.Column(db.DateTime,   default=datetime.now, onupdate=datetime.now)
 
     @staticmethod
     def get(key, default=''):
@@ -219,7 +219,7 @@ class SystemConfig(db.Model):
         row = SystemConfig.query.filter_by(key=key).first()
         if row:
             row.value = value
-            row.updated_at = datetime.utcnow()
+            row.updated_at = datetime.now()
         else:
             row = SystemConfig(key=key, value=value)
             db.session.add(row)

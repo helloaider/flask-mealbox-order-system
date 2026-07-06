@@ -473,6 +473,7 @@ body { font-family:'PingFang SC','Helvetica Neue',sans-serif; background:#f7f7f7
 .oc-type { background:var(--light); color:var(--primary); border-radius:6px; padding:2px 7px; font-size:11px; font-weight:600; }
 .sbadge  { padding:4px 10px; border-radius:20px; font-size:11px; font-weight:600; }
 .sb-p { background:#f0f0f0; color:#666; }
+.sb-u { background:#fff3e0; color:#e65100; }
 .sb-r { background:#fff8e1; color:var(--yellow); }
 .sb-d { background:#e3f2fd; color:var(--blue); }
 .sb-v { background:#e8f5e9; color:var(--green); }
@@ -1940,8 +1941,8 @@ async function submitOrder() {
 }
 
 // ── 我的订单 ──────────────────────────────
-const STA_TXT = { pending:'待制作', preparing:'制作中', delivering:'配送中', delivered:'已送达' };
-const STA_CLS = { pending:'sb-p',   preparing:'sb-r',   delivering:'sb-d',   delivered:'sb-v' };
+const STA_TXT = { unpaid:'待收款', pending:'待制作', preparing:'制作中', delivering:'配送中', delivered:'已送达' };
+const STA_CLS = { unpaid:'sb-u',   pending:'sb-p',   preparing:'sb-r',   delivering:'sb-d',   delivered:'sb-v' };
 
 let cachedOrders = [];
 
